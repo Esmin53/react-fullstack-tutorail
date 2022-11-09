@@ -1,4 +1,5 @@
 const Validator = require('validator')
+const router = require('../routes/auth')
 const isEmpty = require('./isEmpty')
 
 const validateRegisterInput =(data) => {
@@ -18,7 +19,7 @@ const validateRegisterInput =(data) => {
 
     if(isEmpty(data.confirmPassword)) {
         errors.confirmPassword = 'Confirm password field can not be empty'
-    } else if(!Validator.equales(data.password, data.confirmPassword)) {
+    } else if(!Validator.equals(data.password, data.confirmPassword)) {
         errors.confirmPassword = "Password and confirm password must match"
     }
 
