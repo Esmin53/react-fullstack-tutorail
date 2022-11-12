@@ -2,6 +2,7 @@ require ("dotenv").config()
 const express = require('express')
 const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
+const todosRoute = require('./routes/todos')
 const cookieParser = require('cookie-parser')
 
 const app = express()
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
     res.send('Full stack express server Home Page')
 })
 
+
 app.post('/name', (req, res) => {
     if(req.body.name) {
         return res.json({name: req.body.name})
@@ -25,6 +27,7 @@ app.post('/name', (req, res) => {
 })
 
 app.use('/api/auth', authRoute)
+app.use('/api/todos', todosRoute)
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log('Connected to database')
